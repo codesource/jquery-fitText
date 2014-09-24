@@ -85,7 +85,7 @@
                     var precision = parseFloat(opts.precision) || 0.1;
                     var previousFontSizeRatio = fontSizeRatio;
                     if (clone.innerWidth() - paddings > innerWidth) {
-                        while (limit > 0 && clone.innerWidth() - paddings > innerWidth) {
+                        while (limit > 0 && clone.innerWidth() - paddings >= innerWidth) {
                             previousFontSizeRatio -= precision;
                             clone.css('font-size', previousFontSizeRatio + '%');
                             limit--;
