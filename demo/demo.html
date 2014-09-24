@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery fit text plugin demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            .container{
+                border: 1px solid black;
+                line-height: 1.2em;
+                margin-bottom: 5px;
+                min-height: 5px;
+                padding: 5px;
+                width: 500px;
+            }
+            
+            .byclass{
+                font-size: 16px;
+                font-weight: bold;
+            }
+            
+            #byid{
+                font-size: 16px;
+            }
+            
+            .parent{
+                font-size: 15px;
+            }
+            .parent .son{
+                font-size: 1.5em;
+            }
+            
+            .greater{
+                font-size: 12px;
+            }
+            
+            .both{
+                font-size: 12px;
+            }
+            
+            .both.large{
+                width: 800px;
+            }
+            
+            .hidden{
+                display: none;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>By classname or id</h2>
+        <div class="container byclass">This is a text to fit in div and CSS is set by class xxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+        <div id="byid" class="container">This is a text to fit in div and CSS is set by id xxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+        
+        <h2>Difference between em % px</h2>
+        <div class="parent">
+            <div class="container son em">This is a text to fit with parent font size different to son</div>
+        </div>
+        <div class="parent">
+            <div class="container son pct">This is a text to fit with parent font size different to son</div>
+        </div>
+        <div class="parent">
+            <div class="container son px">This is a text to fit with parent font size different to son</div>
+        </div>
+        
+        <h2>More exemple</h2>
+        <div class="container greater">Initial font-size 12px with greater type</div>
+        <div class="container both">Initial font-size 12px with both type(click to resize)</div>
+        <div class="container hidden">This content was hidden on text resize and has a very long content</div>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="../src/jquery.fitText.js"></script>
+        <script>
+            (function($){
+                $(document).ready(function(){
+                    $('.byclass').fitText();
+                    $('#byid').fitText();
+                    $('.parent .son.em').fitText({
+                        unit: 'em'
+                    });
+                    $('.parent .son.pct').fitText({
+                        unit: '%'
+                    });
+                    $('.parent .son.px').fitText({
+                        unit: 'px'
+                    });
+                    $('.greater').fitText({
+                        type: 'greater'
+                    });
+                    $('.both').fitText({
+                        unit: '%',
+                        type: 'both'
+                    }).on('click', function(){
+                        $(this).toggleClass('large').fitText('resize');
+                    });
+                    $('.hidden').fitText().show();
+                });
+            })(jQuery);
+        </script>
+    </body>
+</html>
