@@ -32,7 +32,7 @@
         var paddings = (parseFloat(_this.css('padding-left')) || 0) + (parseFloat(_this.css('padding-right')) || 0);
         var hiddenAtStart = !_this.is(':visible');
         if (hiddenAtStart) {
-            _this.data('fitText-initialStyle', _this.prop('style'));
+            _this.data('fitText-initialStyle', _this.attr('style') || '');
             _this.css({
                 margin: 0,
                 maxHeight: 0,
@@ -51,7 +51,7 @@
             }
             if (fontSize <= 0) {
                 if (hiddenAtStart) {
-                    _this.prop('style', _this.data('fitText-initialStyle'));
+                    _this.attr('style', _this.data('fitText-initialStyle'));
                 }
                 return false;
             }
@@ -73,7 +73,7 @@
                     var parentFontSize = parseFloat(_this.parent().css("font-size")) || 0;
                     if (parentFontSize <= 0) {
                         if (hiddenAtStart) {
-                            _this.prop('style', _this.data('fitText-initialStyle'));
+                            _this.attr('style', _this.data('fitText-initialStyle'));
                         }
                         return false;
                     }
@@ -105,7 +105,7 @@
                 }
             }
             if (hiddenAtStart) {
-                _this.prop('style', _this.data('fitText-initialStyle'));
+                _this.attr('style', _this.data('fitText-initialStyle'));
             }
             if (newFontSize !== null) {
                 if (opts.smooth && !hiddenAtStart) {
