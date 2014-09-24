@@ -69,6 +69,11 @@
             if ((opts.type === 'smaller' && percentage < 1) || (opts.type === 'greater' && percentage > 1) || opts.type === 'both') {
                 if (opts.unit === 'px') {
                     newFontSize = Math.floor(fontSize * percentage);
+                    // fix px for Google Chrome
+                    clone.css('font-size', fontSizeRatio + '%');
+                    if (clone.innerWidth() - paddings > innerWidth) {
+                        newFontSize--;
+                    }
                 } else {
                     var parentFontSize = parseFloat(_this.parent().css("font-size")) || 0;
                     if (parentFontSize <= 0) {
